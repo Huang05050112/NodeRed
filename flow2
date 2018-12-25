@@ -1,0 +1,123 @@
+[
+    {
+        "id": "a8a7d0aa.7bf04",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6a1f0d66.b23f44",
+        "type": "inject",
+        "z": "a8a7d0aa.7bf04",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 70,
+        "y": 140,
+        "wires": [
+            [
+                "dba53bea.38e888",
+                "e9432264.3dcbb"
+            ]
+        ]
+    },
+    {
+        "id": "dba53bea.38e888",
+        "type": "function",
+        "z": "a8a7d0aa.7bf04",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey:\"BgpsCwg0Ov9G4oFA\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "72043a0b.da5794"
+            ]
+        ]
+    },
+    {
+        "id": "72043a0b.da5794",
+        "type": "http request",
+        "z": "a8a7d0aa.7bf04",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/Dg7V6V8c/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "de0a0715.fdd208",
+                "7b1d7e22.e3c6f"
+            ]
+        ]
+    },
+    {
+        "id": "de0a0715.fdd208",
+        "type": "http response",
+        "z": "a8a7d0aa.7bf04",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "e9432264.3dcbb",
+        "type": "function",
+        "z": "a8a7d0aa.7bf04",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey:\"BgpsCwg0Ov9G4oFA\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 180,
+        "wires": [
+            [
+                "c80ba8dc.e92cc8"
+            ]
+        ]
+    },
+    {
+        "id": "c80ba8dc.e92cc8",
+        "type": "http request",
+        "z": "a8a7d0aa.7bf04",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/Dg7V6V8c/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 470,
+        "y": 180,
+        "wires": [
+            [
+                "de0a0715.fdd208",
+                "7b1d7e22.e3c6f"
+            ]
+        ]
+    },
+    {
+        "id": "7b1d7e22.e3c6f",
+        "type": "debug",
+        "z": "a8a7d0aa.7bf04",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 710,
+        "y": 160,
+        "wires": []
+    }
+]
